@@ -33,13 +33,13 @@ namespace JFramework.Game
 
             if (executeArgs == null)
             {
-                return executeArgs;
+                throw new ArgumentNullException(nameof(executeArgs), "Execute arguments cannot be null.");
             }
 
             var targets = executeArgs.TargetUnits;
             if (targets == null || targets.Count == 0)
             {
-                return executeArgs;
+                throw new ArgumentException("Target units cannot be null or empty.", nameof(executeArgs.TargetUnits));
             }
 
             foreach (var target in targets)

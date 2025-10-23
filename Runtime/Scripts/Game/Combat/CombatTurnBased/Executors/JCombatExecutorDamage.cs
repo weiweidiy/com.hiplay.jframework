@@ -27,19 +27,19 @@ namespace JFramework.Game
             //优先使用查找器找到的目标
             if (target != null)
             {
-                return DoDamage(target);
+                return DoDamage(target, executeArgs);
             }
             throw new Exception("JCombatExecutorDamage: No targets found for damage execution.");
         }
 
-        IJCobmatExecuteArgsHistroy DoDamage(IJCombatCasterTargetableUnit target)
+        IJCobmatExecuteArgsHistroy DoDamage(IJCombatCasterTargetableUnit target, IJCombatExecutorExecuteArgs executeArgs)
         {
             var executeArgsHistroy = new JCombatExecutorExecuteArgsHistroy();
 
             var uid = Guid.NewGuid().ToString();
 
             float hitValue = 0;
-            formulua.CalcHitValue(target, ref hitValue);
+            formulua.CalcHitValue(target, ref hitValue, executeArgs);
             hitValue = Math.Max(1, hitValue); // 确保伤害值不为负
 
             var sourceUnitUid = GetOwner().GetCaster();
@@ -50,7 +50,7 @@ namespace JFramework.Game
 
             var sourceUnit = query.GetUnit(sourceUnitUid);
             var caster = sourceUnit as IJCombatCasterUnit;
-            caster.NotifyBeforeHitting(data);
+            caster.NotifyBeforeHitting(data,target);
             target.NotifyBeforeHurt(data);
 
             // 受伤

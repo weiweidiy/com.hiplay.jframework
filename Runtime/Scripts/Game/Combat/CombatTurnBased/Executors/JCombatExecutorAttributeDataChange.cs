@@ -21,7 +21,7 @@
         {
             var targetAttribute = target.GetAttribute(GetTargetAttributeName()) as GameAttributeInt;
             var value = (float)targetAttribute.CurValue;
-            formulua.CalcHitValue(target, ref value); 
+            formulua.CalcHitValue(target, ref value, executeArgs); 
             targetAttribute.CurValue = (int)value;
             return new JCombatExecutorExecuteArgsHistroy() {  };
         }

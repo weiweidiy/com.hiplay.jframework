@@ -7,7 +7,7 @@
         /// </summary>
         /// <param name="target"></param>
         /// <returns></returns>
-        void CalcHitValue(IJAttributeableUnit target, ref float value);
+        void CalcHitValue(IJAttributeableUnit target, ref float value, IJCombatExecutorExecuteArgs executeArgs);
 
         bool IsHit(IJAttributeableUnit target);
     }

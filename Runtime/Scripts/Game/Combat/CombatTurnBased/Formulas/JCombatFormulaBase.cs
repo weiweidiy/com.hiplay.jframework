@@ -12,6 +12,6 @@
             return true;
         }
 
-        public abstract void CalcHitValue(IJAttributeableUnit target, ref float value);
+        public abstract void CalcHitValue(IJAttributeableUnit target, ref float value, IJCombatExecutorExecuteArgs executeArgs);
     }
 }

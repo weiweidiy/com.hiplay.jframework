@@ -10,6 +10,7 @@ namespace JFramework.Game
         public IJCombatDamageData DamageData { get; set; }
         public List<IJCombatCasterTargetableUnit> TargetUnits { get ; set; }
         public Dictionary<string, IJCobmatExecuteArgsHistroy> ExecuteArgsHistroy { get ; set; }
+        public IJCombatCasterUnit CasterUnit { get ; set ; }
 
         public void Clear()
         {

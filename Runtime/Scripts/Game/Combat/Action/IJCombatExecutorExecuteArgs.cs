@@ -8,6 +8,11 @@ namespace JFramework.Game
     public interface IJCombatExecutorExecuteArgs
     {
         /// <summary>
+        /// 释放者
+        /// </summary>
+        IJCombatCasterUnit CasterUnit { get; set; }
+
+        /// <summary>
         /// 执行的目标对象列表，必须要有
         /// </summary>
         List<IJCombatCasterTargetableUnit> TargetUnits { get; set; }
@@ -25,11 +30,17 @@ namespace JFramework.Game
         void Clear();
     }
 
+    /// <summary>
+    /// 执行器执行参数历史
+    /// </summary>
     public interface IJCobmatExecuteArgsHistroy
     {
 
     }
 
+    /// <summary>
+    /// 执行器执行参数历史-伤害
+    /// </summary>
     public class JCombatExecutorExecuteArgsHistroy : IJCobmatExecuteArgsHistroy
     {
         public IJCombatDamageData DamageData { get; set; }

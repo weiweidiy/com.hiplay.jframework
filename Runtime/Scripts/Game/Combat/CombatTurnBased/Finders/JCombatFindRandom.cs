@@ -2,6 +2,9 @@
 
 namespace JFramework.Game
 {
+    /// <summary>
+    /// 查找指定数量的单位，参数1：数量
+    /// </summary>
     public class JCombatFindRandom : JCombatFindRow
     {
         int count;

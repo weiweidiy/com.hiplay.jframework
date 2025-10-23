@@ -29,7 +29,7 @@ namespace JFramework.Game
             }
 
             var value = (float)damageData.GetDamage();
-            formulua.CalcHitValue(null, ref value); // 假设伤害提升20%
+            formulua.CalcHitValue(null, ref value, executeArgs); // 假设伤害提升20%
             value = Math.Max(1, value); // 确保伤害值不为负v0
             damageData.SetDamage((int)value);
 

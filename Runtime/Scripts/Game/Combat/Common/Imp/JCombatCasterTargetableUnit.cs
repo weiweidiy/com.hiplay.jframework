@@ -10,12 +10,12 @@ namespace JFramework.Game
         public event Action<IJCombatCasterUnit, IJCombatAction> onCast;
         public event Action<IJCombatTargetable, IJCombatDamageData> onBeforeHurt;
         public event Action<IJCombatTargetable, IJCombatDamageData> onAfterHurt;
-        public event Action<IJCombatCasterUnit, IJCombatDamageData> onBeforeHitting;
+        public event Action<IJCombatCasterUnit, IJCombatDamageData, IJCombatTargetable> onBeforeHitting;
         public event Action<IJCombatCasterUnit, IJCombatDamageData> onAfterHitted;
 
-        public void NotifyBeforeHitting( IJCombatDamageData data)
+        public void NotifyBeforeHitting( IJCombatDamageData data, IJCombatTargetable target)
         {
-            onBeforeHitting?.Invoke(this, data);
+            onBeforeHitting?.Invoke(this, data, target);
         }
 
         public void NotifyAfterHitted(IJCombatDamageData data)

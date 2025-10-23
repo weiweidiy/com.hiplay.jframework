@@ -24,7 +24,7 @@
             return GetArg(3);
         }
 
-        protected override float GetCalcValueArg()
+        protected override float GetCalcValueArg(IJAttributeableUnit target, IJCombatExecutorExecuteArgs executeArgs)
         {
             var curFrame = query.GetCurFrame();
             if(curFrame == GetTurnCount()) // 如果当前回合数等于指定的回合数
@@ -33,7 +33,7 @@
             }
             else
             {
-                return base.GetCalcValueArg();
+                return base.GetCalcValueArg(target, executeArgs);
             }
         }
 

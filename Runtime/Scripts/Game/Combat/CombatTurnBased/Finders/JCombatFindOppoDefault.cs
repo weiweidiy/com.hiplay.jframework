@@ -3,7 +3,6 @@ using System.Collections.Generic;
 
 namespace JFramework.Game
 {
-
     /// <summary>
     /// 基于战位的查找器, 基础查找器，深度找
     /// </summary>
@@ -18,22 +17,31 @@ namespace JFramework.Game
         };
 
 
-        public JCombatFindOppoDefault(float[] args) : base(args)
-        {
+        public JCombatFindOppoDefault(float[] args) : base(args) { }
 
-        }
-
+        /// <summary>
+        /// 获取有效参数数量
+        /// </summary>
+        /// <returns></returns>
         protected override int GetValidArgsCount()
         {
             return 0;
         }
 
+        /// <summary>
+        /// 获取目标数据
+        /// </summary>
+        /// <returns></returns>
         public override IJCombatExecutorExecuteArgs GetTargetsData()
         {
             executeArgs.TargetUnits = GetTargets();
             return executeArgs;
         }
 
+        /// <summary>
+        /// 获取目标列表
+        /// </summary>
+        /// <returns></returns>
         protected virtual List<IJCombatCasterTargetableUnit> GetTargets()
         {
             var result = new List<IJCombatCasterTargetableUnit>();
@@ -81,13 +89,7 @@ namespace JFramework.Game
             return null;
         }
 
-        protected virtual IJCombatTeam GetTargetTeam()
-        {
-            var myUnitUid = GetOwner().GetCaster();
-            var targetTeams = query.GetOppoTeamsByUnit(myUnitUid);
-            var targetTeam = targetTeams[0];
-            return targetTeam;
-        }
+
 
         
 
@@ -101,7 +103,12 @@ namespace JFramework.Game
             return GetSortedSeats(seats, mySeat);
         }
 
-
+        /// <summary>
+        /// 游戏规则：根据输入的座位号，返回排序后的座位列表
+        /// </summary>
+        /// <param name="seats"></param>
+        /// <param name="input"></param>
+        /// <returns></returns>
         List<int> GetSortedSeats(int[,] seats, int input)
         {
             // 1. 确定输入所在的行
