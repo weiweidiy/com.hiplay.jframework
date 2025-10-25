@@ -7,7 +7,7 @@ namespace JFramework.Game
     /// </summary>
     public class JCombatTriggerTurnStart : JCombatTriggerBase
     {
-
+        int count = 0;
         public JCombatTriggerTurnStart(float[] args, IJCombatTargetsFinder finder) : base(args, finder)
         {
 
@@ -15,7 +15,7 @@ namespace JFramework.Game
 
         protected override int GetValidArgsCount()
         {
-            return 2;
+            return 3;
         }
 
         int GetTurnMode()
@@ -26,6 +26,11 @@ namespace JFramework.Game
         int GetTargetTurn()
         {
             return (int)GetArg(1);
+        }
+
+        int GetMaxCount()
+        {
+            return (int)GetArg(2);
         }
 
         protected override void OnStart(RunableExtraData extraData)
@@ -45,6 +50,9 @@ namespace JFramework.Game
 
         private void Combat_onCombatTurnStart(int frame)
         {
+            if(count >= GetMaxCount())
+                return;
+
             var needTrigger = false;
             if (GetTurnMode() == 0) // 0表示每回合都触发
                 needTrigger = true;
@@ -64,6 +72,8 @@ namespace JFramework.Game
                 TriggerOn(finder.GetTargetsData());
             else
                 TriggerOn(null);
+
+            count++;
         }
     }
 }

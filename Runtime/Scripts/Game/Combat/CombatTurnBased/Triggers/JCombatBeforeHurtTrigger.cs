@@ -51,11 +51,11 @@ namespace JFramework.Game
             targets.Clear();
         }
 
-        private void OnBeforeHurt(IJCombatTargetable targetable, IJCombatDamageData data)
+        protected virtual void OnBeforeHurt(IJCombatTargetable hittee, IJCombatDamageData data, IJCombatCasterUnit caster, IJCombatExecutorExecuteArgs casterExecuteArgs)
         {
             //executeArgs.Clear();
             executeArgs.DamageData = data;
-            executeArgs.TargetUnits = new List<IJCombatCasterTargetableUnit> { targetable as IJCombatCasterTargetableUnit };
+            executeArgs.TargetUnits = new List<IJCombatCasterTargetableUnit> { hittee as IJCombatCasterTargetableUnit };
             TriggerOn(executeArgs);
         }
 
