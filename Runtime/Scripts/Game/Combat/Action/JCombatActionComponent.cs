@@ -10,8 +10,6 @@ namespace JFramework.Game
 
         float[] args;
 
-        
-
         public JCombatActionComponent(float[] args)
         {
             this.args = args;

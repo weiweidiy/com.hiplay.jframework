@@ -2,7 +2,7 @@
 
 namespace JFramework.Game
 {
-    public abstract class JCombatTriggerBase: JCombatActionComponent,  IJCombatTrigger/*, IJCombatUnitEventListener, IJCombatTurnBasedEventListener*/
+    public abstract class JCombatTriggerBase : JCombatActionComponent, IJCombatTrigger/*, IJCombatUnitEventListener, IJCombatTurnBasedEventListener*/
     {
         public event System.Action<IJCombatTrigger, IJCombatExecutorExecuteArgs> onTriggerOn;
 
@@ -12,7 +12,7 @@ namespace JFramework.Game
 
         protected IJCombatExecutorExecuteArgs executeArgs = new ExecutorExecuteArgs();
 
-        protected JCombatTriggerBase(float[] args, IJCombatTargetsFinder finder ) : base(args)
+        protected JCombatTriggerBase(float[] args, IJCombatTargetsFinder finder) : base(args)
         {
             this.finder = finder;
         }
@@ -28,10 +28,13 @@ namespace JFramework.Game
         protected override void OnStart(RunableExtraData extraData)
         {
             base.OnStart(extraData);
-            if(finder != null)
+            if (finder != null)
             {
                 finder.Start(extraData);
             }
+
+            // 设置执行参数的施法者
+            executeArgs.CasterUnit = query.GetUnit(GetOwner().GetCaster()) as IJCombatCasterUnit;
         }
 
         protected override void OnStop()
@@ -46,7 +49,7 @@ namespace JFramework.Game
         protected override void OnUpdate(RunableExtraData extraData)
         {
             base.OnUpdate(extraData);
-            if(finder != null)
+            if (finder != null)
             {
                 finder.Update(extraData);
             }

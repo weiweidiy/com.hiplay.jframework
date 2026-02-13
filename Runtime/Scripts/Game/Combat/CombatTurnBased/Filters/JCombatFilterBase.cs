@@ -1,8 +1,8 @@
 ﻿namespace JFramework.Game
 {
-    public abstract class IJCombatFilterBase : JCombatActionComponent, IJCombatFilter
+    public abstract class JCombatFilterBase : JCombatActionComponent, IJCombatFilter
     {
-        public IJCombatFilterBase(float[] args) : base(args)
+        public JCombatFilterBase(float[] args) : base(args)
         {
         }
 

@@ -8,14 +8,15 @@ namespace JFramework.Game
     public class JCombatCasterTargetableUnit : RunableDictionaryContainer<IUnique>, IJCombatCasterTargetableUnit
     {
         public event Action<IJCombatCasterUnit, IJCombatAction> onCast;
-        public event Action<IJCombatTargetable, IJCombatDamageData> onBeforeHurt;
-        public event Action<IJCombatTargetable, IJCombatDamageData> onAfterHurt;
-        public event Action<IJCombatCasterUnit, IJCombatDamageData> onBeforeHitting;
+        public event Action<IJCombatTargetable, IJCombatDamageData, IJCombatCasterUnit, IJCombatExecutorExecuteArgs> onBeforeHurt;
+        public event Action<IJCombatTargetable, IJCombatDamageData, IJCombatCasterUnit, IJCombatExecutorExecuteArgs> onAfterHurt;
+
+        public event Action<IJCombatCasterUnit, IJCombatDamageData, IJCombatTargetable> onBeforeHitting;
         public event Action<IJCombatCasterUnit, IJCombatDamageData> onAfterHitted;
 
-        public void NotifyBeforeHitting( IJCombatDamageData data)
+        public void NotifyBeforeHitting( IJCombatDamageData data, IJCombatTargetable target)
         {
-            onBeforeHitting?.Invoke(this, data);
+            onBeforeHitting?.Invoke(this, data, target);
         }
 
         public void NotifyAfterHitted(IJCombatDamageData data)
@@ -23,14 +24,14 @@ namespace JFramework.Game
             onAfterHitted?.Invoke(this, data);
         }
 
-        public void NotifyBeforeHurt( IJCombatDamageData data)
+        public void NotifyBeforeHurt( IJCombatDamageData data, IJCombatCasterUnit caster, IJCombatExecutorExecuteArgs casterExecuteArgs)
         {
-            onBeforeHurt?.Invoke(this, data);
+            onBeforeHurt?.Invoke(this, data, caster, casterExecuteArgs);
         }
 
-        public void NotifyAfterHurt( IJCombatDamageData data)
+        public void NotifyAfterHurt( IJCombatDamageData data, IJCombatCasterUnit caster, IJCombatExecutorExecuteArgs casterExecuteArgs)
         {
-            onAfterHurt?.Invoke(this, data);
+            onAfterHurt?.Invoke(this, data, caster, casterExecuteArgs);
         }
 
 

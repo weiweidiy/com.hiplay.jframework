@@ -8,10 +8,10 @@ namespace JFramework.Game
     public interface IJCombatCasterUnit : IJCombatUnit, IJCombatCaster
     {
         event Action<IJCombatCasterUnit, IJCombatAction> onCast;
-        event Action<IJCombatCasterUnit, IJCombatDamageData> onBeforeHitting;
+        event Action<IJCombatCasterUnit, IJCombatDamageData, IJCombatTargetable> onBeforeHitting;
         event Action<IJCombatCasterUnit, IJCombatDamageData> onAfterHitted;
 
-        void NotifyBeforeHitting(IJCombatDamageData data);
+        void NotifyBeforeHitting(IJCombatDamageData data, IJCombatTargetable target);
         void NotifyAfterHitted(IJCombatDamageData data);
     }
 }

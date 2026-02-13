@@ -38,6 +38,11 @@ namespace JFramework.Game
             return targets;
         }
 
+        /// <summary>
+        /// 获取同一行的其他座位
+        /// </summary>
+        /// <param name="seat"></param>
+        /// <returns></returns>
         public virtual List<int> GetOtherSeats(int seat)
         {       
             return GetOtherSeatsInRow(seat);

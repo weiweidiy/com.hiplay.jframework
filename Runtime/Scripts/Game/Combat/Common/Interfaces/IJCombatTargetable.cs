@@ -7,8 +7,8 @@ namespace JFramework.Game
     /// </summary>
     public interface IJCombatTargetable
     {
-        event Action<IJCombatTargetable, IJCombatDamageData> onBeforeHurt;
-        event Action<IJCombatTargetable, IJCombatDamageData> onAfterHurt;
+        event Action<IJCombatTargetable, IJCombatDamageData, IJCombatCasterUnit, IJCombatExecutorExecuteArgs> onBeforeHurt;
+        event Action<IJCombatTargetable, IJCombatDamageData, IJCombatCasterUnit, IJCombatExecutorExecuteArgs> onAfterHurt;
         /// <summary>
         /// 收到伤害
         /// </summary>
@@ -19,7 +19,7 @@ namespace JFramework.Game
 
         int GetMaxHp();
 
-        void NotifyBeforeHurt(IJCombatDamageData data);
-        void NotifyAfterHurt(IJCombatDamageData data);
+        void NotifyBeforeHurt(IJCombatDamageData data, IJCombatCasterUnit caster, IJCombatExecutorExecuteArgs casterExecuteArgs);
+        void NotifyAfterHurt(IJCombatDamageData data, IJCombatCasterUnit caster, IJCombatExecutorExecuteArgs casterExecuteArgs);
     }
 }

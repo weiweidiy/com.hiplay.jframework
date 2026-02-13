@@ -7,7 +7,7 @@ namespace JFramework.Game
     /// </summary>
     public class JCombatBeforeHurtTrigger : JCombatTriggerBase
     {
-
+        List<IJCombatCasterTargetableUnit> targets;
         public JCombatBeforeHurtTrigger(float[] args, IJCombatTargetsFinder finder) : base(args, finder)
         {
         }
@@ -27,33 +27,39 @@ namespace JFramework.Game
             }
 
             var executeArgs = finder.GetTargetsData();
-            var targets = executeArgs.TargetUnits;
+            targets = executeArgs.TargetUnits;
 
             foreach (var target in targets)
             {
                 target.onBeforeHurt += OnBeforeHurt;
             }
- 
-        }
-
-        private void OnBeforeHurt(IJCombatTargetable targetable, IJCombatDamageData data)
-        {
-            executeArgs.Clear();
-            executeArgs.DamageData = data;
-            executeArgs.TargetUnits = new List<IJCombatCasterTargetableUnit> { targetable as IJCombatCasterTargetableUnit };
-            TriggerOn(executeArgs);
         }
 
         protected override void OnStop()
         {
             base.OnStop();
 
-            //if (targetable != null)
-            //{
-            //    targetable.onBeforeHurt -= OnBeforeHurt;
-            //    targetable = null;
-            //}
+            if (targets == null)
+                return;
+            foreach (var targetable in targets)
+            {
+                if (targetable != null)
+                {
+                    targetable.onBeforeHurt -= OnBeforeHurt;
+                }
+            }
+            targets.Clear();
         }
+
+        protected virtual void OnBeforeHurt(IJCombatTargetable hittee, IJCombatDamageData data, IJCombatCasterUnit caster, IJCombatExecutorExecuteArgs casterExecuteArgs)
+        {
+            //executeArgs.Clear();
+            executeArgs.DamageData = data;
+            executeArgs.TargetUnits = new List<IJCombatCasterTargetableUnit> { hittee as IJCombatCasterTargetableUnit };
+            TriggerOn(executeArgs);
+        }
+
+
 
 
     }
