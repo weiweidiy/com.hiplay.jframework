@@ -1,7 +1,7 @@
 {
   "name": "com.hiplay.jframework",
   "displayName": "JFramework",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "unity": "2019.2",
   "unityRelease": "6f1",
   "description": "Description of your package",
@@ -14,5 +14,9 @@
     "name": "Jichunwei",
     "email": "49595272@qq.com",
     "url": "https://hiplay.ren"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/weiweidiy/com.hiplay.jframework.git"
   }
 }

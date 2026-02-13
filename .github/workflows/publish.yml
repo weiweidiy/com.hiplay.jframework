@@ -1,0 +1,32 @@
+name: Publish to GitHub Packages
+
+on:
+  push:
+    tags:
+      - 'v*'          # 当推送以 v 开头的标签时触发，例如 v1.0.6
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write   # 允许向 GitHub Packages 写入
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://npm.pkg.github.com'
+          # 注意：不要设置 scope，因为我们发布的是非作用域包
+
+      - name: Install dependencies (if any)
+        run: npm ci
+        continue-on-error: true   # 如果没有 package-lock.json 也不报错
+
+      - name: Publish to GitHub Packages
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
