@@ -367,7 +367,7 @@ namespace JFramework
         /// <param name="encoding"></param>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
-        public virtual Task<TResponse> HttpRequestAsync<TRequest, TResponse>(string url, TRequest requestData, Encoding encoding = null)
+        public virtual Task<TResponse> HttpRequestAsync<TRequest, TResponse>(string url, TRequest requestData, Encoding encoding = null, IRunable runable = null)
         {
             return Task.FromResult(default(TResponse));
         }
