@@ -16,5 +16,11 @@ namespace JFramework
         public abstract void Close();
         public abstract void Init(string url, string token = null);
         public abstract void Send(byte[] data);
+
+        public object Clone()
+        {
+            var util = new Utility();
+            return util.DeepClone<IJSocket>(this);
+        }
     }
 }

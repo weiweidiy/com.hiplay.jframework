@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace JFramework
 {
-    public interface IHttpRequest
+    public interface IHttpRequest 
     {
         byte[] Post(string url, Dictionary<string, string> dic, Encoding encoding = null);
 
