@@ -5,10 +5,30 @@ namespace JFramework
     public abstract class JBaseSocket : IJSocket
     {
         public event Action<IJSocket> onOpen;
+        protected void OnOpen(IJSocket socket)
+        {
+            onOpen?.Invoke(socket);
+        }
         public event Action<IJSocket, string> onError;
+        protected void OnError(IJSocket socket, string error)
+        {
+            onError?.Invoke(socket, error);
+        }
         public event Action<IJSocket, byte[]> onBinary;
+        protected void OnBinary(IJSocket socket, byte[] data)
+        {
+            onBinary?.Invoke(socket, data);
+        }
         public event Action<IJSocket, string> onMessage;
+        protected void OnMessage(IJSocket socket, string message)
+        {
+            onMessage?.Invoke(socket, message);
+        }
         public event Action<IJSocket, SocketStatusCodes, string> onClosed;
+        protected void OnClosed(IJSocket socket, SocketStatusCodes code, string reason)
+        {
+            onClosed?.Invoke(socket, code, reason);
+        }
 
         public abstract bool IsOpen { get; }
         public abstract void Open();
