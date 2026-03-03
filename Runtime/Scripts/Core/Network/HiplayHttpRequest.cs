@@ -349,6 +349,15 @@ namespace JFramework
         }
 
         /// <summary>
+        /// 删除header
+        /// </summary>
+        /// <param name="name"></param>
+        public void RemoveHeader(string name)
+        {
+            _headers.Remove(name);
+        }
+
+        /// <summary>
         /// 设置类型
         /// </summary>
         /// <param name="contentType"></param>
@@ -371,6 +380,8 @@ namespace JFramework
         {
             return Task.FromResult(default(TResponse));
         }
+
+
 
         #endregion
 

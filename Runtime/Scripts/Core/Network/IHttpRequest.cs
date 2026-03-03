@@ -26,6 +26,8 @@ namespace JFramework
 
         void AddHeader(string name, string value);
 
+        void RemoveHeader(string name);
+
         void SetContentType(string contentType);
 
         Task<TResponse> HttpRequestAsync<TRequest, TResponse>(string url, TRequest requestData, Encoding encoding = null, IRunable runable = null);
