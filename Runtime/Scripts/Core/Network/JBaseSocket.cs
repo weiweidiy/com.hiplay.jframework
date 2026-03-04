@@ -30,17 +30,17 @@ namespace JFramework
             onClosed?.Invoke(socket, code, reason);
         }
 
-        public abstract bool IsOpen { get; }
+        public abstract bool IsOpen { get; set; }
         public abstract void Open();
 
         public abstract void Close();
         public abstract void Init(string url, string token = null);
         public abstract void Send(byte[] data);
 
-        public object Clone()
+        public virtual object Clone()
         {
             var util = new Utility();
-            return util.DeepClone<IJSocket>(this);
+            return util.DeepClone(this, true);
         }
     }
 }
